@@ -2,12 +2,12 @@ Recreating issue as described at:
 
 http://stackoverflow.com/questions/21710450/disable-spring-boot-autoconfiguration-for-transitive-dependencies
 
+* ```gradle clean build```
+*  ```java -jar build/libs/boot-autoconfig-issue.jar```
 
-* gradle clean build
-** Success
-*  java -jar build/libs/boot-autoconfig-issue.jar 
-** Startup failure
-* ```java.lang.NoClassDefFoundError: org/springframework/security/web/authentication/switchuser/AuthenticationSwitchUserEvent```
+Failure during startup:
+
+```java.lang.NoClassDefFoundError: org/springframework/security/web/authentication/switchuser/AuthenticationSwitchUserEvent```
 
 
 
