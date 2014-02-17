@@ -8,6 +8,9 @@ targetCompatibility = JavaVersion.VERSION_1_6
 
 task wrapper(type: Wrapper) { gradleVersion = '1.10' }
 
+
+mainClassName = "com.madorb.BaseApplicationConfig"
+
 buildscript {
     repositories {
         maven { url "http://repo.spring.io/libs-snapshot" }
@@ -25,14 +28,15 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
 
     //Spring Boot
-    compile("org.springframework.boot:spring-boot-starter-actuator:1.0.0.RC3")
-    compile("org.springframework.boot:spring-boot-starter-web:1.0.0.RC3")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-web")
 
     //Groovy
-    compile("org.codehaus.groovy:groovy-all:2.2.1") { force = true }
+    compile("org.codehaus.groovy:groovy") { force = true }
 
     //Spring WS
     compile("org.springframework.ws:spring-ws-core:2.1.4.RELEASE")
@@ -42,7 +46,7 @@ dependencies {
 
     //Spring Security
     //Needed only because spring-ws-security adds Spring Security to classpath and Spring Boot then looks for additional classes
-	//AFAIK this should *not* be required if excluding the SecurityAutoConfiguration
+	//AFAIK this should *not* be required if excluding the ManagementSecurityAutoConfiguration/SecurityAutoConfiguration
     //compile("org.springframework.security:spring-security-web:$springSecurityVersion")
     //compile("org.springframework.security:spring-security-core:$springSecurityVersion")
     //compile("org.springframework.security:spring-security-config:$springSecurityVersion")
