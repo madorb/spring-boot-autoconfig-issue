@@ -1,0 +1,50 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
+
+task wrapper(type: Wrapper) { gradleVersion = '1.10' }
+
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.0.RC3")
+    }
+}
+
+repositories {
+    maven { url "http://repo.spring.io/libs-snapshot" }
+    //Really rather unfortunately needed for Spring-WS-Security's dependency on com.sun.xml.wsit:wsit-rt:1.1
+    maven { url "http://repository.jboss.org/nexus/content/groups/public-jboss"}
+    mavenCentral()
+}
+
+dependencies {
+
+    //Spring Boot
+    compile("org.springframework.boot:spring-boot-starter-actuator:1.0.0.RC3")
+    compile("org.springframework.boot:spring-boot-starter-web:1.0.0.RC3")
+
+    //Groovy
+    compile("org.codehaus.groovy:groovy-all:2.2.1") { force = true }
+
+    //Spring WS
+    compile("org.springframework.ws:spring-ws-core:2.1.4.RELEASE")
+    compile("org.springframework.ws:spring-ws-test:2.1.4.RELEASE")
+    compile("org.springframework.ws:spring-ws-support:2.1.4.RELEASE")
+    compile("org.springframework.ws:spring-ws-security:2.1.4.RELEASE")
+
+    //Spring Security
+    //Needed only because spring-ws-security adds Spring Security to classpath and Spring Boot then looks for additional classes
+	//AFAIK this should *not* be required if excluding the SecurityAutoConfiguration
+    //compile("org.springframework.security:spring-security-web:$springSecurityVersion")
+    //compile("org.springframework.security:spring-security-core:$springSecurityVersion")
+    //compile("org.springframework.security:spring-security-config:$springSecurityVersion")
+}
+

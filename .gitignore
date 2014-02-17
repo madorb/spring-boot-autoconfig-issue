@@ -1,0 +1,22 @@
+#ignore intellij setups
+target/
+out/
+bin/
+build/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.idea/
+.springBeans
+.gradle*
+.groovy
+atlassian-ide-plugin.xml
+global-groovy.log
+rebel.xml
+maven-eclipse.xml
+#ignore any emacs temp files
+*~
+.settings/
+/build
